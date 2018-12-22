@@ -41,7 +41,7 @@ class AcousticEvent():
             length = sampleDuration - len(Wav.data)
             zeros = np.zeros(length)
             Wav.data = np.append(Wav.data, zeros)
-        self.Wav = Wav                                             # dane wav zdarzenia
+        self.Wav = (Wav)                                             # dane wav zdarzenia
         # spektrogram zdarzenia
         self.f, self.t, self.Sxx = specCalculate(Wav.data, Wav.fs)
         self.Sxx = specNorm(self.Sxx)
@@ -54,6 +54,9 @@ class AcousticEvent():
 
     def printInfo(self):
         print self.className, "created:", self.when
+    
+    
+
 
 
 # ----------------------OPERACJE NA PLIKACH-------------------------------------
@@ -153,7 +156,7 @@ def writeAllEvents(eventDict):
             filename = eventDict[event].className + str(counter)
             counter += 1
         else:
-            filename = eventDict[event].className
+            filename =  eventDict[event].when + eventDict[event].className
         writeWavFile(eventDict[event].Wav, filename + '.wav')
     return
 
@@ -406,7 +409,7 @@ def eventDetection(path):  # funkcja wykrywa zdarzenia akustyczne
     z = abs(sum(Sxx[:, 0:-step] - Sxx[:, step-1:-1]))
     # z1 = (sum(Sxx[:,step-1:-1  ] - Sxx[:,0:-step ]))
 
-    z = rms((z), 2)
+    z = rms((z), 5)
 
     index = np.where(z > 3*np.mean(z))
     for i in range(len(z)):
@@ -416,13 +419,13 @@ def eventDetection(path):  # funkcja wykrywa zdarzenia akustyczne
         z[i] = 1
 
     x = sum(Sxx)
-
-    x = rms(x, 3)  # opcja
+    print 'szum =', noise
+    x = rms(x, 10)  # opcja
     for i in range(0, len(x)):
-        if x[i] <= 2 * noise:
+        if x[i] <= 5 * noise: # ile razy wieksze od szumu 
             x[i] = 0
         else:
-            x[i] = 600
+            x[i] = 1
     # x = z
     # plotWav(x)
     plt.plot(x, 'b')
@@ -483,7 +486,7 @@ def classyfication(EventDict):
         minDistance = 100000
         for spec in spectroDict:
             distance = (slidingWindow(
-                spectroDict[spec], EventDict[event].Spec))
+                spectroDict[spec], EventDict[event].Spec)) # TODO zabezpieczyc jak nie ma plikow .spec
             if distance < minDistance:
                 minDistance = distance
                 EventDict[event].className = spec[0:-5]
@@ -499,8 +502,8 @@ def plotSpectogram(spec, name='spectogram'):
     f = spec.f
     t = spec.t
     Sxx = spec.Sxx
-    if spec.className != '':
-        name = spec.className 
+    # if spec.className != '':
+    #     name = spec.className 
     plt.figure(figsize=(16, 8))
     # plt.pcolormesh(t, f, 20 * np.log10(Sxx))
     plt.pcolormesh(t, f, (Sxx))
@@ -520,26 +523,28 @@ def plotWav(fileName, name=''):
 
 # createAllSampleSpectogram()
 # pngfromSpec()
-d = eventDetection('rozne.wav')
-wav = readData('rozne.wav')
+d = eventDetection('testtv.wav')
+wav = readData('biuro03.wav')
+wav.data = norm(wav.data)
+print len(d)
 # d = classyfication(d)
-# writeAllEvents(d)
+writeAllEvents(d)
 
-specs = readAllSpecFiles()
-stri = 'none00'
+# specs = readAllSpecFiles()
+# stri = 'none00'
 # f, t, Sxx = specCalculate(wav.data, wav.fs)
 # A = Spectro(f, t, Sxx)
 # x = slidingWindow( d[stri].Spec  ,specs['polsekundy.spec'] )
 # for sp in specs:
 # x = slidingWindow( A  ,specs[sp] )
-# plotWav(x, sp)
+plotWav(wav.data)
 # x = slidingWindow(A, specs['drzwi.spec'])
 # x = slidingWindow( specs['polsekundy.spec'],specs['klik.spec'] )
 
-plotSpectogram(d[stri].Spec, stri)
-plotSpectogram(specs['klik.spec'], 'klik')
-plotWav(sum(specs['drzwi.spec'].Sxx))
-plt.plot(wav.data, 'b')
-plt.plot(wav.data, 'r')
+# plotSpectogram(d[stri].Spec, stri)
+# plotSpectogram(specs['klik.spec'], 'klik')
+# plotWav(sum(specs['drzwi.spec'].Sxx))
+# plt.plot(wav.data, 'b')
+# plt.plot(wav.data, 'r')
 plt.show()
 # print min(x)
