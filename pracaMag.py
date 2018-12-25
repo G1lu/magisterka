@@ -150,6 +150,7 @@ def writeSpecFile(f, t, Sxx, fileName):
 def writeAllEvents(eventDict):
     """zapisuje wszystkie zdarzenia dzwiekowe
        parametr to slownik z wavArray"""
+    dir = 'Pliki//'
     counter = 0
     for event in eventDict:
         if os.path.isfile(eventDict[event].className + '.wav'):
@@ -157,7 +158,7 @@ def writeAllEvents(eventDict):
             counter += 1
         else:
             filename =  eventDict[event].when + eventDict[event].className
-        writeWavFile(eventDict[event].Wav, filename + '.wav')
+        writeWavFile(eventDict[event].Wav,dir + filename + '.wav')
     return
 
 
@@ -248,11 +249,13 @@ def specCalculate(fileName, fs):
     return f, t, Sxx  # TODO: Zamienic na klase Spectro
 
 
-# tworzy spektogram usredniony ze wszystkich plikow dzwiekowych w katalogach
+
 def createSampleSpectogram(wavArray, mode):
-    """Tworzy spektrogram usredniony z z plikow wave 
+    """Tworzy spektrogram usredniony z plikow wave 
     znajdujacych sie w katalogu. Nazwa katalogu jest 
-    nazwa pliku dodany jest jedynie .spec"""
+    nazwa pliku dodany jest jedynie .spec. 
+    mode = add: dodaje wszystkie spektrogramy i normalizuje wynik
+    mode = mid: oblicza wartosc srednia ze wszystkich spektrogramow"""
     # TODO Czy  pliki tej samej dlugosci
     spectroArray = []
     print "Spektogram jest tworzony..."
@@ -371,15 +374,14 @@ def slidingWindow(specTested, specPattern, step=1, start=0):
         # x[count] = sumResult[i]
         count += 1
 
-    plt.plot(x, 'g')
+    # plt.plot(x, 'g')
     # plotWav(x)
-    return min(avrResult)
+    return (avrResult)
 
 
 def calibrateWav(wav):
     noise = []
     f, t, Sxx = specCalculate(wav.data, wav.fs)
-    # Sxx = specNorm(Sxx)
     noise.append(max(sum(Sxx)))
     tmp = max(noise)
     return tmp
@@ -401,7 +403,7 @@ def eventDetection(path):  # funkcja wykrywa zdarzenia akustyczne
         Wavfile.fs, Wavfile.data[10025:10025+22050], Wavfile.className)
     # plotWav(Wavfile.data)
     noise = calibrateWav(TmpWav)
-
+    
     f, t, Sxx = specCalculate(Wavfile.data, Wavfile.fs)
     # Sxx = specNorm(Sxx)
 
@@ -418,14 +420,18 @@ def eventDetection(path):  # funkcja wykrywa zdarzenia akustyczne
     for i in index[0]:
         z[i] = 1
 
+    noiseFactor = -7.0175 * noise + 6.2105 
+    if noise > 0.1:
+        noiseFactor = 2
+    print 'noisefactor =', noiseFactor
     x = sum(Sxx)
     print 'szum =', noise
-    x = rms(x, 10)  # opcja
+    x = rms(x, 5)  # opcja
     for i in range(0, len(x)):
-        if x[i] <= 5 * noise: # ile razy wieksze od szumu 
+        if x[i] <= noiseFactor * noise: # ile razy wieksze od szumu 
             x[i] = 0
         else:
-            x[i] = 1
+            x[i] = 0.001
     # x = z
     # plotWav(x)
     plt.plot(x, 'b')
@@ -523,21 +529,34 @@ def plotWav(fileName, name=''):
 
 # createAllSampleSpectogram()
 # pngfromSpec()
-d = eventDetection('testtv.wav')
-wav = readData('biuro03.wav')
+dir = 'testy1.wav'
+d = eventDetection(dir)
+wav = readData(dir)
 wav.data = norm(wav.data)
+
 print len(d)
 # d = classyfication(d)
-writeAllEvents(d)
+# writeAllEvents(d)
+f, t, Sxx = specCalculate(wav.data[0:5025], wav.fs)
+A = Spectro(f, t, (Sxx))
+f1, t1, Sxx1= specCalculate(wav.data, wav.fs)
+test = Spectro(f1, t1, (Sxx1))
 
+plotSpectogram((test))
 # specs = readAllSpecFiles()
-# stri = 'none00'
+# wav.data = 20 * np.log10(wav.data)# stri = 'none00'
 # f, t, Sxx = specCalculate(wav.data, wav.fs)
 # A = Spectro(f, t, Sxx)
 # x = slidingWindow( d[stri].Spec  ,specs['polsekundy.spec'] )
 # for sp in specs:
-# x = slidingWindow( A  ,specs[sp] )
-plotWav(wav.data)
+x = slidingWindow(test, A)
+z = np.zeros(len(x))
+for i in range(len(x) - 1):
+    z[i] = x[i + 1] - x[i]
+
+# plt.plot(z)
+
+# plotWav(x)
 # x = slidingWindow(A, specs['drzwi.spec'])
 # x = slidingWindow( specs['polsekundy.spec'],specs['klik.spec'] )
 
@@ -545,6 +564,8 @@ plotWav(wav.data)
 # plotSpectogram(specs['klik.spec'], 'klik')
 # plotWav(sum(specs['drzwi.spec'].Sxx))
 # plt.plot(wav.data, 'b')
-# plt.plot(wav.data, 'r')
+# plt.plot((x), 'r')
+# plt.plot(x, 'g')
+
 plt.show()
 # print min(x)

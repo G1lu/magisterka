@@ -1,0 +1,498 @@
+wlacznik.spec
+szuranie_krzesla.spec
+szuranie_krzesla.spec.png
+wlacznik.spec.png
+Kaszel/kaszel05.wav
+Kaszel/kaszel06.wav
+Kaszel/kaszel07.wav
+Kaszel/kaszel08.wav
+Kaszel/kaszel09.wav
+Kaszel/kaszel10.wav
+Kaszel/kaszel11.wav
+Kaszel/kaszel12.wav
+Kaszel/kaszel13.wav
+Kaszel/kaszel14.wav
+Kaszel/kaszel15.wav
+Kaszel/kaszel16.wav
+Kaszel/kaszel17.wav
+Kaszel/kaszel18.wav
+Kaszel/kaszel19.wav
+Kaszel/kaszel20.wav
+Kaszel/kaszel21.wav
+Kaszel/kaszel22.wav
+Kaszel/kaszel23.wav
+Kaszel/kaszel24.wav
+Kaszel/kaszel29.wav
+Kaszel/kaszel30.wav
+Kaszel/kaszel31.wav
+Kaszel/kaszel32.wav
+Kaszel/kaszel33.wav
+Kaszel/kaszel34.wav
+Kaszel/kaszel35.wav
+Kaszel/kaszel36.wav
+Kaszel/kaszel37.wav
+Kaszel/kaszel38.wav
+Kaszel/kaszel39.wav
+Kaszel/kaszel40.wav
+Kaszel/kaszel41.wav
+Kaszel/kaszel42.wav
+Kaszel/kaszel43.wav
+Kaszel/kaszel44.wav
+Kaszel/kaszel45.wav
+Kaszel/kaszel46.wav
+Kaszel/kaszel47.wav
+Kaszel/kaszel48.wav
+Kaszel/kaszel49.wav
+Kaszel/kaszel50.wav
+Kaszel/kaszel51.wav
+Kaszel/kaszel52.wav
+Kaszel/kaszel53.wav
+Kaszel/kaszel54.wav
+Kaszel/kaszel55.wav
+Kaszel/kaszel56.wav
+Kaszel/kaszel57.wav
+Kaszel/kaszel58.wav
+Klawiatura/klawiatura05.wav
+Klawiatura/klawiatura06.wav
+Klawiatura/klawiatura07.wav
+Klawiatura/klawiatura08.wav
+Klawiatura/klawiatura09.wav
+Klawiatura/klawiatura10.wav
+Klawiatura/klawiatura11.wav
+Klawiatura/klawiatura12.wav
+Klawiatura/klawiatura13.wav
+Klawiatura/klawiatura14.wav
+Klawiatura/klawiatura15.wav
+Klawiatura/klawiatura16.wav
+Klawiatura/klawiatura17.wav
+Klawiatura/klawiatura18.wav
+Klawiatura/klawiatura19.wav
+Klawiatura/klawiatura20.wav
+Klawiatura/klawiatura21.wav
+Klawiatura/klawiatura22.wav
+Klawiatura/klawiatura23.wav
+Klawiatura/klawiatura24.wav
+Klawiatura/klawiatura25.wav
+Klawiatura/klawiatura26.wav
+Klawiatura/klawiatura27.wav
+Klawiatura/klawiatura28.wav
+Klawiatura/klawiatura29.wav
+Klawiatura/klawiatura30.wav
+Klawiatura/klawiatura31.wav
+Klawiatura/klawiatura32.wav
+Klawiatura/klawiatura33.wav
+Klawiatura/klawiatura34.wav
+Klawiatura/klawiatura35.wav
+Klawiatura/klawiatura36.wav
+Klawiatura/klawiatura37.wav
+Klawiatura/klawiatura38.wav
+Klawiatura/klawiatura39.wav
+Klawiatura/klawiatura40.wav
+Klawiatura/klawiatura41.wav
+Klawiatura/klawiatura42.wav
+Klawiatura/klawiatura43.wav
+Klawiatura/klawiatura44.wav
+Klawiatura/klawiatura45.wav
+Klawiatura/klawiatura46.wav
+Klawiatura/klawiatura47.wav
+Klawiatura/klawiatura48.wav
+Szuflada_otw/szuflada_otwieranie01.wav
+Szuflada_otw/szuflada_otwieranie02.wav
+Szuflada_otw/szuflada_otwieranie03.wav
+Szuflada_otw/szuflada_otwieranie04.wav
+Szuflada_otw/szuflada_otwieranie05.wav
+Szuflada_otw/szuflada_otwieranie06.wav
+Szuflada_otw/szuflada_otwieranie07.wav
+Szuflada_otw/szuflada_otwieranie08.wav
+Szuflada_otw/szuflada_otwieranie09.wav
+Szuflada_otw/szuflada_otwieranie10.wav
+Szuflada_otw/szuflada_otwieranie11.wav
+Szuflada_otw/szuflada_otwieranie12.wav
+Szuflada_otw/szuflada_otwieranie13.wav
+Szuflada_otw/szuflada_otwieranie14.wav
+Szuflada_otw/szuflada_otwieranie15.wav
+Szuflada_otw/szuflada_otwieranie16.wav
+Szuflada_otw/szuflada_otwieranie17.wav
+Szuflada_otw/szuflada_otwieranie18.wav
+Szuflada_otw/szuflada_otwieranie19.wav
+Szuflada_otw/szuflada_otwieranie20.wav
+Szuflada_otw/szuflada_otwieranie21.wav
+Szuflada_otw/szuflada_otwieranie22.wav
+Szuflada_otw/szuflada_otwieranie23.wav
+Szuflada_otw/szuflada_otwieranie24.wav
+Szuflada_otw/szuflada_otwieranie25.wav
+Szuflada_otw/szuflada_otwieranie26.wav
+Szuflada_otw/szuflada_otwieranie27.wav
+Szuflada_otw/szuflada_otwieranie28.wav
+Szuflada_otw/szuflada_otwieranie29.wav
+Szuflada_otw/szuflada_otwieranie30.wav
+Szuflada_otw/szuflada_otwieranie31.wav
+Szuflada_otw/szuflada_otwieranie32.wav
+Szuflada_otw/szuflada_otwieranie33.wav
+Szuflada_otw/szuflada_otwieranie34.wav
+Szuflada_zam/szuflada_zamykanie05.wav
+Szuflada_zam/szuflada_zamykanie06.wav
+Szuflada_zam/szuflada_zamykanie07.wav
+Szuflada_zam/szuflada_zamykanie08.wav
+Szuflada_zam/szuflada_zamykanie09.wav
+Szuflada_zam/szuflada_zamykanie10.wav
+Szuflada_zam/szuflada_zamykanie11.wav
+Szuflada_zam/szuflada_zamykanie12.wav
+Szuflada_zam/szuflada_zamykanie13.wav
+Szuflada_zam/szuflada_zamykanie14.wav
+Szuflada_zam/szuflada_zamykanie15.wav
+Szuflada_zam/szuflada_zamykanie16.wav
+Szuflada_zam/szuflada_zamykanie17.wav
+Szuflada_zam/szuflada_zamykanie18.wav
+Szuflada_zam/szuflada_zamykanie19.wav
+Szuflada_zam/szuflada_zamykanie20.wav
+Szuflada_zam/szuflada_zamykanie21.wav
+Szuflada_zam/szuflada_zamykanie22.wav
+Szuflada_zam/szuflada_zamykanie23.wav
+Szuflada_zam/szuflada_zamykanie24.wav
+Szuflada_zam/szuflada_zamykanie25.wav
+Szuflada_zam/szuflada_zamykanie26.wav
+Szuflada_zam/szuflada_zamykanie27.wav
+Szuflada_zam/szuflada_zamykanie28.wav
+Szuflada_zam/szuflada_zamykanie29.wav
+Szuflada_zam/szuflada_zamykanie30.wav
+Szuflada_zam/szuflada_zamykanie31.wav
+Szuflada_zam/szuflada_zamykanie32.wav
+Szuflada_zam/szuflada_zamykanie33.wav
+Szuflada_zam/szuflada_zamykanie34.wav
+Szuflada_zam/szuflada_zamykanie35.wav
+Szuflada_zam/szuflada_zamykanie36.wav
+Szuflada_zam/szuflada_zamykanie37.wav
+Szuflada_zam/szuflada_zamykanie38.wav
+Szuflada_zam/szuflada_zamykanie39.wav
+Szuflada_zam/szuflada_zamykanie40.wav
+Szuflada_zam/szuflada_zamykanie41.wav
+drzwi_otwieranie/drzwi_otwieranie05.H2
+drzwi_otwieranie/drzwi_otwieranie05.HDP
+drzwi_otwieranie/drzwi_otwieranie05.wav
+drzwi_otwieranie/drzwi_otwieranie06.H2
+drzwi_otwieranie/drzwi_otwieranie06.HDP
+drzwi_otwieranie/drzwi_otwieranie06.wav
+drzwi_otwieranie/drzwi_otwieranie07.H2
+drzwi_otwieranie/drzwi_otwieranie07.HDP
+drzwi_otwieranie/drzwi_otwieranie07.wav
+drzwi_otwieranie/drzwi_otwieranie08.H2
+drzwi_otwieranie/drzwi_otwieranie08.HDP
+drzwi_otwieranie/drzwi_otwieranie08.wav
+drzwi_otwieranie/drzwi_otwieranie09.H2
+drzwi_otwieranie/drzwi_otwieranie09.HDP
+drzwi_otwieranie/drzwi_otwieranie09.wav
+drzwi_otwieranie/drzwi_otwieranie10.H2
+drzwi_otwieranie/drzwi_otwieranie10.HDP
+drzwi_otwieranie/drzwi_otwieranie10.wav
+drzwi_otwieranie/drzwi_otwieranie11.H2
+drzwi_otwieranie/drzwi_otwieranie11.HDP
+drzwi_otwieranie/drzwi_otwieranie11.wav
+drzwi_otwieranie/drzwi_otwieranie12.H2
+drzwi_otwieranie/drzwi_otwieranie12.HDP
+drzwi_otwieranie/drzwi_otwieranie12.wav
+drzwi_otwieranie/drzwi_otwieranie13.H2
+drzwi_otwieranie/drzwi_otwieranie13.HDP
+drzwi_otwieranie/drzwi_otwieranie13.wav
+drzwi_otwieranie/drzwi_otwieranie14.H2
+drzwi_otwieranie/drzwi_otwieranie14.HDP
+drzwi_otwieranie/drzwi_otwieranie14.wav
+drzwi_otwieranie/drzwi_otwieranie15.H2
+drzwi_otwieranie/drzwi_otwieranie15.HDP
+drzwi_otwieranie/drzwi_otwieranie15.wav
+drzwi_otwieranie/drzwi_otwieranie16.H2
+drzwi_otwieranie/drzwi_otwieranie16.HDP
+drzwi_otwieranie/drzwi_otwieranie16.wav
+drzwi_otwieranie/drzwi_otwieranie17.H2
+drzwi_otwieranie/drzwi_otwieranie17.HDP
+drzwi_otwieranie/drzwi_otwieranie17.wav
+drzwi_otwieranie/drzwi_otwieranie18.H2
+drzwi_otwieranie/drzwi_otwieranie18.HDP
+drzwi_otwieranie/drzwi_otwieranie18.wav
+drzwi_otwieranie/drzwi_otwieranie19.H2
+drzwi_otwieranie/drzwi_otwieranie19.HDP
+drzwi_otwieranie/drzwi_otwieranie19.wav
+drzwi_otwieranie/drzwi_otwieranie20.H2
+drzwi_otwieranie/drzwi_otwieranie20.HDP
+drzwi_otwieranie/drzwi_otwieranie20.wav
+drzwi_otwieranie/drzwi_otwieranie21.H2
+drzwi_otwieranie/drzwi_otwieranie21.HDP
+drzwi_otwieranie/drzwi_otwieranie21.wav
+drzwi_otwieranie/drzwi_otwieranie22.H2
+drzwi_otwieranie/drzwi_otwieranie22.HDP
+drzwi_otwieranie/drzwi_otwieranie22.wav
+drzwi_otwieranie/drzwi_otwieranie23.H2
+drzwi_otwieranie/drzwi_otwieranie23.HDP
+drzwi_otwieranie/drzwi_otwieranie23.wav
+drzwi_otwieranie/drzwi_otwieranie24.H2
+drzwi_otwieranie/drzwi_otwieranie24.HDP
+drzwi_otwieranie/drzwi_otwieranie24.wav
+drzwi_otwieranie/drzwi_otwieranie25.H2
+drzwi_otwieranie/drzwi_otwieranie25.HDP
+drzwi_otwieranie/drzwi_otwieranie25.wav
+drzwi_otwieranie/drzwi_otwieranie26.H2
+drzwi_otwieranie/drzwi_otwieranie26.HDP
+drzwi_otwieranie/drzwi_otwieranie26.wav
+drzwi_otwieranie/drzwi_otwieranie27.H2
+drzwi_otwieranie/drzwi_otwieranie27.HDP
+drzwi_otwieranie/drzwi_otwieranie27.wav
+drzwi_otwieranie/drzwi_otwieranie28.H2
+drzwi_otwieranie/drzwi_otwieranie28.HDP
+drzwi_otwieranie/drzwi_otwieranie28.wav
+drzwi_otwieranie/drzwi_otwieranie29.H2
+drzwi_otwieranie/drzwi_otwieranie29.HDP
+drzwi_otwieranie/drzwi_otwieranie29.wav
+drzwi_otwieranie/drzwi_otwieranie30.H2
+drzwi_otwieranie/drzwi_otwieranie30.HDP
+drzwi_otwieranie/drzwi_otwieranie30.wav
+drzwi_otwieranie/drzwi_otwieranie31.H2
+drzwi_otwieranie/drzwi_otwieranie31.HDP
+drzwi_otwieranie/drzwi_otwieranie31.wav
+drzwi_otwieranie/drzwi_otwieranie32.H2
+drzwi_otwieranie/drzwi_otwieranie32.HDP
+drzwi_otwieranie/drzwi_otwieranie32.wav
+drzwi_otwieranie/drzwi_otwieranie33.H2
+drzwi_otwieranie/drzwi_otwieranie33.HDP
+drzwi_otwieranie/drzwi_otwieranie33.wav
+drzwi_otwieranie/drzwi_otwieranie34.H2
+drzwi_otwieranie/drzwi_otwieranie34.HDP
+drzwi_otwieranie/drzwi_otwieranie34.wav
+drzwi_otwieranie/drzwi_otwieranie35.H2
+drzwi_otwieranie/drzwi_otwieranie35.HDP
+drzwi_otwieranie/drzwi_otwieranie35.wav
+drzwi_otwieranie/drzwi_otwieranie36.H2
+drzwi_otwieranie/drzwi_otwieranie36.HDP
+drzwi_otwieranie/drzwi_otwieranie36.wav
+drzwi_otwieranie/drzwi_otwieranie37.H2
+drzwi_otwieranie/drzwi_otwieranie37.HDP
+drzwi_otwieranie/drzwi_otwieranie37.wav
+drzwi_otwieranie/drzwi_otwieranie38.H2
+drzwi_otwieranie/drzwi_otwieranie38.HDP
+drzwi_otwieranie/drzwi_otwieranie38.wav
+drzwi_otwieranie/drzwi_otwieranie39.H2
+drzwi_otwieranie/drzwi_otwieranie39.HDP
+drzwi_otwieranie/drzwi_otwieranie39.wav
+drzwi_otwieranie/drzwi_otwieranie40.H2
+drzwi_otwieranie/drzwi_otwieranie40.HDP
+drzwi_otwieranie/drzwi_otwieranie40.wav
+drzwi_otwieranie/drzwi_otwieranie41.H2
+drzwi_otwieranie/drzwi_otwieranie41.HDP
+drzwi_otwieranie/drzwi_otwieranie41.wav
+drzwi_otwieranie/drzwi_otwieranie42.H2
+drzwi_otwieranie/drzwi_otwieranie42.HDP
+drzwi_otwieranie/drzwi_otwieranie42.wav
+drzwi_otwieranie/drzwi_otwieranie43.H2
+drzwi_otwieranie/drzwi_otwieranie43.HDP
+drzwi_otwieranie/drzwi_otwieranie43.wav
+drzwi_otwieranie/drzwi_otwieranie44.H2
+drzwi_otwieranie/drzwi_otwieranie44.HDP
+drzwi_otwieranie/drzwi_otwieranie44.wav
+drzwi_otwieranie/drzwi_otwieranie45.H2
+drzwi_otwieranie/drzwi_otwieranie45.HDP
+drzwi_otwieranie/drzwi_otwieranie45.wav
+drzwi_otwieranie/drzwi_otwieranie46.H2
+drzwi_otwieranie/drzwi_otwieranie46.HDP
+drzwi_otwieranie/drzwi_otwieranie46.wav
+drzwi_otwieranie/drzwi_otwieranie47.H2
+drzwi_otwieranie/drzwi_otwieranie47.HDP
+drzwi_otwieranie/drzwi_otwieranie47.wav
+drzwi_otwieranie/drzwi_otwieranie48.H2
+drzwi_otwieranie/drzwi_otwieranie48.HDP
+drzwi_otwieranie/drzwi_otwieranie48.wav
+drzwi_otwieranie/drzwi_otwieranie49.H2
+drzwi_otwieranie/drzwi_otwieranie49.HDP
+drzwi_otwieranie/drzwi_otwieranie49.wav
+drzwi_otwieranie/drzwi_otwieranie50.H2
+drzwi_otwieranie/drzwi_otwieranie50.HDP
+drzwi_otwieranie/drzwi_otwieranie50.wav
+drzwi_otwieranie/drzwi_otwieranie51.H2
+drzwi_otwieranie/drzwi_otwieranie51.HDP
+drzwi_otwieranie/drzwi_otwieranie51.wav
+drzwi_otwieranie/drzwi_otwieranie52.H2
+drzwi_otwieranie/drzwi_otwieranie52.HDP
+drzwi_otwieranie/drzwi_otwieranie52.wav
+drzwi_zamykanie/drzwi_otwieranie05.wav
+drzwi_zamykanie/drzwi_otwieranie06.wav
+drzwi_zamykanie/drzwi_otwieranie07.wav
+drzwi_zamykanie/drzwi_otwieranie08.wav
+drzwi_zamykanie/drzwi_otwieranie09.wav
+drzwi_zamykanie/drzwi_otwieranie10.wav
+drzwi_zamykanie/drzwi_otwieranie11.wav
+drzwi_zamykanie/drzwi_otwieranie12.wav
+drzwi_zamykanie/drzwi_otwieranie13.wav
+drzwi_zamykanie/drzwi_otwieranie14.wav
+drzwi_zamykanie/drzwi_otwieranie15.wav
+drzwi_zamykanie/drzwi_otwieranie16.wav
+drzwi_zamykanie/drzwi_otwieranie17.wav
+drzwi_zamykanie/drzwi_otwieranie18.wav
+drzwi_zamykanie/drzwi_otwieranie19.wav
+drzwi_zamykanie/drzwi_otwieranie20.wav
+drzwi_zamykanie/drzwi_otwieranie21.wav
+drzwi_zamykanie/drzwi_otwieranie22.wav
+drzwi_zamykanie/drzwi_otwieranie23.wav
+drzwi_zamykanie/drzwi_otwieranie24.wav
+drzwi_zamykanie/drzwi_otwieranie25.wav
+drzwi_zamykanie/drzwi_otwieranie26.wav
+drzwi_zamykanie/drzwi_otwieranie27.wav
+drzwi_zamykanie/drzwi_otwieranie28.wav
+drzwi_zamykanie/drzwi_otwieranie29.wav
+drzwi_zamykanie/drzwi_otwieranie30.wav
+drzwi_zamykanie/drzwi_otwieranie31.wav
+drzwi_zamykanie/drzwi_otwieranie32.wav
+drzwi_zamykanie/drzwi_otwieranie33.wav
+drzwi_zamykanie/drzwi_otwieranie34.wav
+drzwi_zamykanie/drzwi_otwieranie35.wav
+drzwi_zamykanie/drzwi_otwieranie36.wav
+drzwi_zamykanie/drzwi_otwieranie37.wav
+drzwi_zamykanie/drzwi_otwieranie38.wav
+drzwi_zamykanie/drzwi_otwieranie39.wav
+drzwi_zamykanie/drzwi_otwieranie40.wav
+drzwi_zamykanie/drzwi_otwieranie41.wav
+drzwi_zamykanie/drzwi_otwieranie42.wav
+drzwi_zamykanie/drzwi_otwieranie43.wav
+drzwi_zamykanie/drzwi_otwieranie44.wav
+drzwi_zamykanie/drzwi_otwieranie45.wav
+drzwi_zamykanie/drzwi_otwieranie46.wav
+drzwi_zamykanie/drzwi_otwieranie47.wav
+drzwi_zamykanie/drzwi_otwieranie48.wav
+drzwi_zamykanie/drzwi_otwieranie49.wav
+drzwi_zamykanie/drzwi_otwieranie50.wav
+drzwi_zamykanie/drzwi_otwieranie51.wav
+drzwi_zamykanie/drzwi_otwieranie52.wav
+szuranie_krzesla/szuranie_krzesla01.wav
+szuranie_krzesla/szuranie_krzesla02.wav
+szuranie_krzesla/szuranie_krzesla03.wav
+szuranie_krzesla/szuranie_krzesla04.wav
+szuranie_krzesla/szuranie_krzesla05.wav
+szuranie_krzesla/szuranie_krzesla06.wav
+szuranie_krzesla/szuranie_krzesla07.wav
+szuranie_krzesla/szuranie_krzesla08.wav
+szuranie_krzesla/szuranie_krzesla09.wav
+szuranie_krzesla/szuranie_krzesla10.wav
+szuranie_krzesla/szuranie_krzesla11.wav
+szuranie_krzesla/szuranie_krzesla12.wav
+szuranie_krzesla/szuranie_krzesla13.wav
+szuranie_krzesla/szuranie_krzesla14.wav
+szuranie_krzesla/szuranie_krzesla15.wav
+szuranie_krzesla/szuranie_krzesla16.wav
+szuranie_krzesla/szuranie_krzesla17.wav
+szuranie_krzesla/szuranie_krzesla18.wav
+szuranie_krzesla/szuranie_krzesla19.wav
+szuranie_krzesla/szuranie_krzesla20.wav
+szuranie_krzesla/szuranie_krzesla21.wav
+szuranie_krzesla/szuranie_krzesla22.wav
+szuranie_krzesla/szuranie_krzesla23.wav
+szuranie_krzesla/szuranie_krzesla24.wav
+szuranie_krzesla/szuranie_krzesla25.wav
+szuranie_krzesla/szuranie_krzesla26.wav
+szuranie_krzesla/szuranie_krzesla27.wav
+szuranie_krzesla/szuranie_krzesla28.wav
+szuranie_krzesla/szuranie_krzesla29.wav
+szuranie_krzesla/szuranie_krzesla30.wav
+szuranie_krzesla/szuranie_krzesla31.wav
+szuranie_krzesla/szuranie_krzesla32.wav
+szuranie_krzesla/szuranie_krzesla33.wav
+szuranie_krzesla/szuranie_krzesla34.wav
+szuranie_krzesla/szuranie_krzesla35.wav
+szuranie_krzesla/szuranie_krzesla36.wav
+szuranie_krzesla/szuranie_krzesla37.wav
+szuranie_krzesla/szuranie_krzesla38.wav
+szuranie_krzesla/szuranie_krzesla39.wav
+szuranie_krzesla/szuranie_krzesla40.wav
+szuranie_krzesla/szuranie_krzesla41.wav
+szuranie_krzesla/szuranie_krzesla42.wav
+szuranie_krzesla/szuranie_krzesla43.wav
+szuranie_krzesla/szuranie_krzesla44.wav
+szuranie_krzesla/szuranie_krzesla45.wav
+szuranie_krzesla/szuranie_krzesla46.wav
+szuranie_krzesla/szuranie_krzesla47.wav
+szuranie_krzesla/szuranie_krzesla48.wav
+szuranie_krzesla/szuranie_krzesla49.wav
+szuranie_krzesla/szuranie_krzesla50.wav
+szuranie_krzesla/szuranie_krzesla51.wav
+szuranie_krzesla/szuranie_krzesla52.wav
+szuranie_krzesla/szuranie_krzesla53.wav
+szuranie_krzesla/szuranie_krzesla54.wav
+Szuflada_otw.spec.png
+Kaszel.spec
+Kaszel.spec.png
+Klawiatura.spec
+Klawiatura.spec.png
+Szuflada_otw.spec
+Szuflada_zam.spec
+Szuflada_zam.spec.png
+biuro01.wav
+biuro02.wav
+biuro03.wav
+drzwi_otwieranie.spec
+drzwi_otwieranie.spec.png
+drzwi_zamykanie.spec
+drzwi_zamykanie.spec.png
+testtv.wav
+Sat Dec 22 13:52:37 2018none.wav
+Sat Dec 22 13:51:14 2018none.wav
+Sat Dec 22 13:51:15 2018none.wav
+Sat Dec 22 13:51:22 2018none.wav
+Sat Dec 22 13:51:31 2018none.wav
+Sat Dec 22 13:51:35 2018none.wav
+Sat Dec 22 13:51:36 2018none.wav
+Sat Dec 22 13:51:40 2018none.wav
+Sat Dec 22 13:51:41 2018none.wav
+Sat Dec 22 13:51:44 2018none.wav
+Sat Dec 22 13:51:52 2018none.wav
+Sat Dec 22 13:51:56 2018none.wav
+Sat Dec 22 13:51:57 2018none.wav
+Sat Dec 22 13:52:02 2018none.wav
+Sat Dec 22 13:52:07 2018none.wav
+Sat Dec 22 13:52:09 2018none.wav
+Sat Dec 22 13:52:10 2018none.wav
+Sat Dec 22 13:52:19 2018none.wav
+Sat Dec 22 13:52:20 2018none.wav
+Sat Dec 22 13:52:28 2018none.wav
+Sat Dec 22 13:52:29 2018none.wav
+Sat Dec 22 13:52:30 2018none.wav
+Sat Dec 22 13:52:32 2018none.wav
+Sat Dec 22 13:52:35 2018none.wav
+Sat Dec 22 13:52:38 2018none.wav
+Sat Dec 22 13:52:40 2018none.wav
+Sat Dec 22 13:52:41 2018none.wav
+Sat Dec 22 13:52:50 2018none.wav
+Sat Dec 22 13:52:51 2018none.wav
+Sat Dec 22 13:52:52 2018none.wav
+Sat Dec 22 13:52:53 2018none.wav
+Sat Dec 22 13:52:54 2018none.wav
+Sat Dec 22 13:52:55 2018none.wav
+Sat Dec 22 13:53:04 2018none.wav
+Sat Dec 22 13:53:05 2018none.wav
+Sat Dec 22 13:53:06 2018none.wav
+Sat Dec 22 13:53:07 2018none.wav
+Sat Dec 22 13:53:08 2018none.wav
+Sat Dec 22 13:53:13 2018none.wav
+Sat Dec 22 13:53:14 2018none.wav
+Sat Dec 22 13:53:15 2018none.wav
+Sat Dec 22 13:53:16 2018none.wav
+Sat Dec 22 13:53:17 2018none.wav
+Sat Dec 22 13:53:20 2018none.wav
+Sat Dec 22 13:53:33 2018none.wav
+Sat Dec 22 13:53:37 2018none.wav
+Sat Dec 22 13:53:43 2018none.wav
+Sat Dec 22 13:53:51 2018none.wav
+Sun Dec  9 12:17:59 2018none.wav
+Sun Dec  9 12:18:00 2018none.wav
+Sun Dec  9 12:18:01 2018none.wav
+Sun Dec  9 12:18:02 2018none.wav
+Sun Dec  9 12:18:03 2018none.wav
+Sun Dec  9 12:18:04 2018none.wav
+Sun Dec  9 12:18:05 2018none.wav
+Sun Dec  9 12:18:06 2018none.wav
+Sun Dec  9 12:18:07 2018none.wav
+Sun Dec  9 12:18:09 2018none.wav
+Sun Dec  9 12:18:11 2018none.wav
+Sun Dec  9 12:18:13 2018none.wav
+Sun Dec  9 12:18:14 2018none.wav
+Sun Dec  9 12:18:15 2018none.wav
+Sun Dec  9 12:18:16 2018none.wav
+Sun Dec  9 17:38:31 2018none.wav
+Sun Dec  9 17:38:34 2018none.wav
+Sun Dec  9 17:38:38 2018none.wav
+testy1.wav
