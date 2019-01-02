@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import os
 import time
 import scipy.signal as sig
@@ -9,6 +10,10 @@ import pickle
 from stat import *
 from fastdtw import fastdtw
 from scipy.spatial.distance import euclidean
+import wave
+import sounddevice as sd
+import queue 
+from threading import Thread
 
 
 class Spectro():
@@ -31,10 +36,10 @@ class ClassInfo():
     minDuration = 0
     ClassSpectro = Spectro([], [], [])
 
-
+eventCount = 0
 class AcousticEvent():
     def __init__(self, Wav, duration, when, sampleDuration=22050):  # konstruktor klasy
-
+        global eventCount 
         self.duration = duration  # czas trwania probki
         self.when = when  # kiedy sie wystapilo
         if len(Wav.data) < sampleDuration:  # dopisanie zerami zeby mozna porownywac spektrogramy
@@ -47,13 +52,14 @@ class AcousticEvent():
         self.Sxx = specNorm(self.Sxx)
         self.Spec = Spectro(self.f, self.t, self.Sxx)
         # nazwa klasy do jakiej zaklasyfikowano
-        self.className = 'none'
+        self.className = 'none' + str(eventCount)
+        eventCount += 1
 
     def plotSpecAE(self):
         plotSpectogram(self.Spec)
 
     def printInfo(self):
-        print self.className, "created:", self.when
+        print (self.className, "created:", self.when)
     
     
 
@@ -67,8 +73,8 @@ def readData(fileName):  # funkcja wczytuje plik wav ktory bedzie badany
         zwraca obiekt typu WavData"""
     try:
         fs, data = w.read(fileName)
-    except IOError, (errno, strerror):
-        print "ERROR (%s): %s" % (errno, strerror)
+    except IOError as err:
+        print("ERROR (%s): %s" % format(err))
         data = None
         fs = 0
 
@@ -110,8 +116,8 @@ def readAllAudioFromDir(dirName):  # TODO zamiana na mono jezeli jest stereo
 
     try:
         files = os.listdir(dn)
-    except OSError, (errno, strerror):
-        print "ERROR (%s): %s" % (errno, strerror)
+    except OSError as err:
+        print ("ERROR (%s): %s" % format(err))
         return
 
     # fls = [f for f in os.listdir(dn) if os.path.isfile(os.path.join(dn, f))]
@@ -120,13 +126,13 @@ def readAllAudioFromDir(dirName):  # TODO zamiana na mono jezeli jest stereo
         if os.path.isfile(os.path.join(dn, f)):
             fls.append(os.path.join(dn, f))
 
-    # print fls
+ 
     for fl in fls:
         if fl[-4:-1] + fl[-1] == ".wav":
             audioFileNames.append(fl)
 
     if len(audioFileNames) == 0:
-        print "there is no audio files in directory"
+        print ("there is no audio files in directory")
     else:
         for fl in audioFileNames:
             fs, data = w.read(fl)
@@ -140,6 +146,7 @@ def readAllAudioFromDir(dirName):  # TODO zamiana na mono jezeli jest stereo
 
 def writeSpecFile(f, t, Sxx, fileName):
     """zapisuje spektrogram do pliku"""
+    # fileName = 'Pliki//' + fileName 
     A = Spectro(f, t, Sxx)
     output = open(fileName + '.spec', 'wb')
     pickle.dump(A, output)
@@ -157,15 +164,19 @@ def writeAllEvents(eventDict):
             filename = eventDict[event].className + str(counter)
             counter += 1
         else:
-            filename =  eventDict[event].when + eventDict[event].className
-        writeWavFile(eventDict[event].Wav,dir + filename + '.wav')
+            # filename =  eventDict[event].when + eventDict[event].className
+            filename = eventDict[event].className
+            print(filename)
+            counter += 1
+            
+        writeWavFile(eventDict[event].Wav,dir + filename + str(counter) + '.wav')
     return
 
 
 def readSpecFile(fileName):
     """wczytuje spektrogram z pliku 
     zwraca obiekt klasy Spectro"""
-    fl = open(fileName, 'rb')  # TODO wyjatek nie ma pliku
+    fl = open( fileName, 'rb')  # TODO wyjatek nie ma pliku
     A = pickle.load(fl)
     fl.close()
     return A
@@ -181,14 +192,14 @@ def readAllSpecFiles():
     fl = os.listdir(dn)
     fls = [f for f in fl if os.path.isfile(os.path.join(dn, f))]
     specFileNames = []
-    # print fls
+
 
     for fl in fls:
         if fl[-5:-1] + fl[-1] == ".spec":
             specFileNames.append(fl)
 
     if len(specFileNames) == 0:
-        print "W katalogu nie ma plikow z roszerzeniem .spec"
+        print ("W katalogu nie ma plikow z roszerzeniem .spec")
 
     for fn in specFileNames:
         A = readSpecFile(fn)
@@ -197,20 +208,20 @@ def readAllSpecFiles():
     return spectroDict
 
 
-def pngfromSpec():
+def pngfromSpec(dn='.//'):
     """Tworzy pliki .png z plikow .spec"""
-    dn = ".//"
+    
     fl = os.listdir(dn)
     fls = [f for f in fl if os.path.isfile(os.path.join(dn, f))]
     specFileNames = []
-    # print fls
+    
 
     for fl in fls:
         if fl[-5:-1] + fl[-1] == ".spec":
             specFileNames.append(fl)
 
     if len(specFileNames) == 0:
-        print "W katalogu nie ma plikow z roszerzeniem .spec"
+        print ("W katalogu nie ma plikow z roszerzeniem .spec")
 
     for fn in specFileNames:
         A = readSpecFile(fn)
@@ -227,12 +238,14 @@ def norm(audioFile):
     """normalizuje plik dzwiekowy"""
 
     m = max(abs(audioFile))
-    try:
-        normFactor = 0.99 / m
-    except ZeroDivisionError:
-        print "max value of audiofile is 0"
-        return
-
+    if m == 0:
+        normFactor = 1
+    else:
+        try:
+            normFactor = 0.99 / m
+        except ZeroDivisionError:
+            print ("max value of audiofile is 0")
+        
     audioFile = audioFile * normFactor
     return audioFile
 
@@ -258,7 +271,7 @@ def createSampleSpectogram(wavArray, mode):
     mode = mid: oblicza wartosc srednia ze wszystkich spektrogramow"""
     # TODO Czy  pliki tej samej dlugosci
     spectroArray = []
-    print "Spektogram jest tworzony..."
+    print ("Spektogram jest tworzony...")
 
     # for i in range(1, len(wavArray)):
     #     if len(wavArray[i]) != len(wavArray[i - 1]):
@@ -288,7 +301,7 @@ def createSampleSpectogram(wavArray, mode):
 
     midSxx = specNorm(midSxx)
 
-    # print float(len(spectroArray))
+
     Tmp = Spectro(f, t, midSxx)
 
     # return Tmp
@@ -298,8 +311,14 @@ def createSampleSpectogram(wavArray, mode):
 def specNorm(Sxx):
     """normalizacja spektrogramu"""
     m = np.amax(abs(Sxx))
-    normFactor = 0.9999 / m
-    Sxx = Sxx * normFactor
+    if m == 0:
+        normFactor = 1
+    else:
+        try:
+            normFactor = 0.9999 / m        
+        except ZeroDivisionError as err:
+            print('ERROR', err)
+        Sxx = Sxx * normFactor
     return Sxx
 
 
@@ -334,11 +353,11 @@ def createAllSampleSpectogram(mode='add'):
      ze zawieraja pliki .wav. Zwraca slownik 
      w formie dictBase[klasa] = [fs, wavData]
     - czyli wavArray"""
+     
     dictBase = readAllAudio()
     for klasa in dictBase:
-        # print klasa
         f, t, Sxx = createSampleSpectogram(dictBase[klasa], mode)
-        writeSpecFile(f, t, Sxx, klasa)
+        writeSpecFile(f, t, Sxx,klasa)
     return dictBase
 
 
@@ -350,7 +369,7 @@ def slidingWindow(specTested, specPattern, step=1, start=0):
     y_pattern = len(specPattern.f)
 
     if y_tested != y_pattern:
-        print 'spektogramy o roznej wysokosci'
+        print ('spektogramy o roznej wysokosci')
         return
 
     zeros = np.zeros([y_tested, x_tested + 2 * x_pattern])
@@ -364,8 +383,9 @@ def slidingWindow(specTested, specPattern, step=1, start=0):
         specTmp = zeros[:, i: i + x_pattern]
         # tmpSxx = np.sqrt((specTmp - specPattern.Sxx)**2)
         tmpSxx = specCompare(specTmp, specPattern.Sxx)
-        sumResult.append(sum(sum(tmpSxx)))
-        avrResult.append(np.mean(tmpSxx))
+        for j in range(step):
+            sumResult.append(sum(sum(tmpSxx)))
+            avrResult.append(np.mean(tmpSxx))
 
     x = np.zeros(x_tested)
     count = 0
@@ -373,8 +393,8 @@ def slidingWindow(specTested, specPattern, step=1, start=0):
         x[count] = avrResult[i]
         # x[count] = sumResult[i]
         count += 1
-
-    # plt.plot(x, 'g')
+    x = norm(x)
+    plt.plot(x, 'g.')
     # plotWav(x)
     return (avrResult)
 
@@ -394,13 +414,18 @@ def calibrateSpec(spec):
     return result
 
 
-def eventDetection(path):  # funkcja wykrywa zdarzenia akustyczne
+def eventDetection(path, mode='object', fs=44100):  # funkcja wykrywa zdarzenia akustyczne
 
     eventDict = {}
-    Wavfile = readData(path)
+    if mode == 'path':
+        Wavfile = readData(path) # czyta z pliku 
+        st = os.stat(path) # dla pliku
+    elif mode == 'object':
+        Wavfile = WavData(fs, path, 'object')
+    
     Wavfile.data = norm(Wavfile.data)
     TmpWav = WavData(
-        Wavfile.fs, Wavfile.data[10025:10025+22050], Wavfile.className)
+        Wavfile.fs, Wavfile.data[0:10025], Wavfile.className)
     # plotWav(Wavfile.data)
     noise = calibrateWav(TmpWav)
     
@@ -423,26 +448,34 @@ def eventDetection(path):  # funkcja wykrywa zdarzenia akustyczne
     noiseFactor = -7.0175 * noise + 6.2105 
     if noise > 0.1:
         noiseFactor = 2
-    print 'noisefactor =', noiseFactor
+    # print ('noisefactor =', noiseFactor)
     x = sum(Sxx)
-    print 'szum =', noise
+    # print ('szum =', noise)
     x = rms(x, 5)  # opcja
     for i in range(0, len(x)):
         if x[i] <= noiseFactor * noise: # ile razy wieksze od szumu 
             x[i] = 0
         else:
-            x[i] = 0.001
+            x[i] = 1
     # x = z
     # plotWav(x)
     plt.plot(x, 'b')
 
     s = []  # tablica poczatkow i koncow zdarzen
     cff = int(float(len(Wavfile.data)) / float(len(x)))
+    if x[0] > 0: # na wypadek jakby plik zaczal sie od dzwieku
+        s.append(0)
     for i in range(1, len(x)):
         if x[i] != x[i-1]:
             s.append(i * cff)
 
-    st = os.stat(path)
+    for i in range(len(s)):
+        offset = 2000
+        if i % 2 == 0:
+            s[i] += offset
+        else:
+            s[i] -= offset
+
     fileCount = 0
 
     for i in range(0, len(s) - 1, 2):
@@ -456,13 +489,85 @@ def eventDetection(path):  # funkcja wykrywa zdarzenia akustyczne
 
         Tmp = WavData(Wavfile.fs, Wavfile.data[(
             s[i]):s[i + 1]], Wavfile.className)
-
-        eTime = time.asctime(time.localtime(st[ST_MTIME] + duration[0]))
+        if mode == 'path':
+            eTime = time.asctime(time.localtime(st[ST_MTIME] + duration[0])) # dla operacji na pliku
+        elif mode == 'object':
+            eTime = duration
         eTmp = AcousticEvent(Tmp, duration, eTime)
         eventDict[name] = eTmp
 
     return eventDict
 
+def eventDetectionSlidingWindow(data, mode='object', fs=44100):
+    q = queue.Queue() 
+    eventDict = {}
+    if mode == 'path':
+        Wavfile = readData(data) # czyta z pliku 
+        st = os.stat(data) # dla pliku
+    elif mode == 'object':
+        Wavfile = WavData(fs, data, 'object')
+    
+    f, t, Sxx = specCalculate(Wavfile.data, Wavfile.fs)
+    f1, t1, Sxx1 = specCalculate(Wavfile.data[0:1050], Wavfile.fs)
+    Tested = Spectro(f, t, Sxx)
+    A = Spectro(f1, t1, Sxx1)
+    x = slidingWindow(Tested,A)
+    
+    z = np.array([])
+
+    for i in range(len(x)-1):
+        z = np.append(z, x[i + 1] - x[i])
+    
+    z = norm(z)
+    z = abs(z)
+    z = rms(z, 10)
+    
+    for i in range(len(z)):    
+        if (z[i]) > 0.02:
+            z[i] = 1
+        else:
+            z[i] = 0
+
+    plt.plot(z, 'r')
+    
+    s = []  # tablica poczatkow i koncow zdarzen
+    cff = int(float(len(Wavfile.data)) / float(len(z)))
+    if z[0] > 0: # na wypadek jakby plik zaczal sie od dzwieku
+        s.append(0)
+    for i in range(1, len(z)):
+        if z[i] != z[i-1]:
+            s.append(i * cff)
+
+    # for i in range(len(s)): # rozszerzenie przedzialow 
+    #     offset = 2000
+    #     if i % 2 == 0:
+    #         s[i] += offset
+    #     else:
+    #         s[i] -= offset
+
+    fileCount = 0
+
+    for i in range(0, len(s) - 1, 2):
+        if fileCount < 10:
+            name = 'none0' + str(fileCount)
+        else:
+            name = 'none' + str(fileCount)
+        fileCount += 1
+        duration = [samplesToTime(s[i], Wavfile.fs),
+                    samplesToTime(s[i + 1], Wavfile.fs)]
+
+        Tmp = WavData(Wavfile.fs, Wavfile.data[(
+            s[i]):s[i + 1]], Wavfile.className)
+        if mode == 'path':
+            eTime = time.asctime(time.localtime(st[ST_MTIME] + duration[0])) # dla operacji na pliku
+        elif mode == 'object':
+            eTime = duration
+        eTmp = AcousticEvent(Tmp, duration, eTime)
+        eventDict[name] = eTmp
+        q.put(eTmp)
+
+
+    return eventDict, q
 
 def rms(data, samplesCount):
     tmpData = []
@@ -491,12 +596,12 @@ def classyfication(EventDict):
     for event in EventDict:
         minDistance = 100000
         for spec in spectroDict:
-            distance = (slidingWindow(
+            distance = min(slidingWindow(
                 spectroDict[spec], EventDict[event].Spec)) # TODO zabezpieczyc jak nie ma plikow .spec
             if distance < minDistance:
                 minDistance = distance
                 EventDict[event].className = spec[0:-5]
-        print distance, ":\t", EventDict[event].printInfo()
+        print (distance, ":\t", EventDict[event].printInfo())
 
     return EventDict
 
@@ -527,45 +632,128 @@ def plotWav(fileName, name=''):
     plt.title(name)
 
 
-# createAllSampleSpectogram()
+def audioRecord(fs=44100, duration=5):
+    '''Nagrywa dzwiek i zwradca WavData'''
+    myrecording = sd.rec(int(duration * fs), samplerate=fs, channels=1)
+    sd.wait()
+    record = WavData(fs, myrecording[:,0], '')
+    return record
+
+
+# --------------------------------- MAIN :) --------------------------------
+
+
+# a = readAllSpecFiles()
+# d = createAllSampleSpectogram('add')
 # pngfromSpec()
-dir = 'testy1.wav'
-d = eventDetection(dir)
-wav = readData(dir)
-wav.data = norm(wav.data)
+# X = audioRecord()
+# writeWavFile(X, 'nagranie.wav')
+# dir = "nagranie.wav"
+# wav = readData(dir)
 
-print len(d)
-# d = classyfication(d)
+# di, q = eventDetectionSlidingWindow(dir, mode='path')
+# d = eventDetection(dir, mode='path')
 # writeAllEvents(d)
-f, t, Sxx = specCalculate(wav.data[0:5025], wav.fs)
-A = Spectro(f, t, (Sxx))
-f1, t1, Sxx1= specCalculate(wav.data, wav.fs)
-test = Spectro(f1, t1, (Sxx1))
+# writeAllEvents(di)
 
-plotSpectogram((test))
-# specs = readAllSpecFiles()
-# wav.data = 20 * np.log10(wav.data)# stri = 'none00'
-# f, t, Sxx = specCalculate(wav.data, wav.fs)
-# A = Spectro(f, t, Sxx)
-# x = slidingWindow( d[stri].Spec  ,specs['polsekundy.spec'] )
-# for sp in specs:
-x = slidingWindow(test, A)
-z = np.zeros(len(x))
-for i in range(len(x) - 1):
-    z[i] = x[i + 1] - x[i]
+# # d = classyfication(d)
+# # writeAllEvents(d)
 
-# plt.plot(z)
+# # wav = readData(dir)
+# # # wav.data = norm(wav.data)
+# # fs =44100
+# # duration = 5.5  # seconds
+# # # myrecording = sd.rec(int(duration * fs), samplerate=fs, channels=1)
 
-# plotWav(x)
-# x = slidingWindow(A, specs['drzwi.spec'])
-# x = slidingWindow( specs['polsekundy.spec'],specs['klik.spec'] )
+# # # sd.wait()
+# # # d = eventDetection(myrecording[:,0])
+# # # sd.play(myrecording, fs)
+# # # sd.wait()
+# # # plotWav(myrecording, 'nagranie')
+# plotWav(wav.data)
 
-# plotSpectogram(d[stri].Spec, stri)
-# plotSpectogram(specs['klik.spec'], 'klik')
-# plotWav(sum(specs['drzwi.spec'].Sxx))
-# plt.plot(wav.data, 'b')
-# plt.plot((x), 'r')
-# plt.plot(x, 'g')
+
+
+q = queue.Queue()
+
+def putStreaIntoQueue():
+    def callback(indata, frames, time, status):
+               
+        if status:
+            text = ' ' + str(status) + ' '
+            print(text)
+        if any(indata):
+            print(len(indata))
+            q.put(indata.copy())
+        else:
+            print('no input')
+
+    with sd.InputStream(channels=1, callback=callback,
+                        blocksize=int(44100 / 4),
+                        samplerate=44100):
+        while True:
+            response = input()
+            print(response)
+            if response in ('', 'q', 'Q'):
+                break
+
+
+def realTimeEventDetection():
+
+    x = np.array([])
+    print('foo1')
+    while True:
+        # time.sleep(0.1)
+        if q.qsize() > 0:
+            A = q.get()
+            x = np.append(x, A)
+            
+            if len(x) >= 44100 * 3:
+                wav = WavData(44100, x, 'plik')
+                plt.plot(x)
+                
+                x = []
+                detected, k = eventDetectionSlidingWindow(wav.data)
+                # detected = classyfication(detected)
+                writeAllEvents(detected)
+                print('zapisałem', len(detected),  'plikow')
+                plt.show()
+        pass
+    # d = eventDetectionSlidingWindow(x)
+    # plotWav(x)
+    # plt.show()        
+
+# def foo3():
+#     x = np.array([])
+#     while True:
+#         # time.sleep(0.1)
+#         if q.qsize() > 3:
+#             time.sleep(0.1)
+#             A = q.get()
+#             # print (A)
+#             x = np.append(x, A[:,0])
+            
+#             if len(x) >= 44100 * 5:
+#                 # plt.plot(x)
+#                 # plt.show()
+#                 wav = WavData(44100, x, 'plik')
+#                 x = []
+#                 writeWavFile(wav, 'plik.wav')
+#                 print('zapisałem plik')
+#     pass
+
+thread1 = Thread( target=putStreaIntoQueue)
+thread2 = Thread( target=realTimeEventDetection)
+# thread3 = Thread( target=foo3)
+
+thread1.start()
+thread2.start()
+# thread3.start()
+thread1.join()
+thread2.join()
+
+print('done')
 
 plt.show()
-# print min(x)
+
+
